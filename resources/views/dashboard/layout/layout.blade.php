@@ -44,7 +44,7 @@
     <link rel="stylesheet" type="text/css" href="{{ asset('dashboard') }}/assets/css/style.css">
 </head>
 
-<body>
+<body class="rtl">
 
     <!-- page-wrapper Start-->
     <div class="page-wrapper">

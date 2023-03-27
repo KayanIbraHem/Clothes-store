@@ -312,7 +312,7 @@
                         class="fa fa-angle-right pull-right"></i></a>
                 <ul class="sidebar-submenu">
                     <li>
-                        <a href="profile.html"><i class="fa fa-circle"></i>Profile
+                        <a href="{{route('dashboard.settings.index')}}"><i class="fa fa-circle"></i>Settings
                         </a>
                     </li>
                 </ul>

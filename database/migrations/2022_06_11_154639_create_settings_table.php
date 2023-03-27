@@ -14,19 +14,19 @@ return new class extends Migration
     public function up()
     {
         Schema::create('settings', function (Blueprint $table) {
-            $table->increments('id');
-            $table->string('name');
-            $table->string('description');
-            $table->string('logo');
-            $table->string('favicon');
-            $table->string('email');
-            $table->string('phone');
-            $table->string('address');
-            $table->string('facebook');
-            $table->string('twitter');
-            $table->string('instagram');
-            $table->string('youtube');
-            $table->string('tiktok');
+            $table->increments('id')->nullable();
+            $table->string('name')->nullable();
+            $table->string('description')->nullable();
+            $table->string('logo')->nullable();
+            $table->string('favicon')->nullable();
+            $table->string('email')->nullable();
+            $table->string('phone')->nullable();
+            $table->string('address')->nullable();
+            $table->string('facebook')->nullable();
+            $table->string('twitter')->nullable();
+            $table->string('instagram')->nullable();
+            $table->string('youtube')->nullable();
+            $table->string('tiktok')->nullable();
             $table->timestamps();
         });
     }
