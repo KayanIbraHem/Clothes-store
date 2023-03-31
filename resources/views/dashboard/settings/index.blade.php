@@ -42,7 +42,6 @@
                                     enctype="multipart/form-data">
                                     @csrf
                                     @method('put')
-
                                     @if ($errors->any())
                                         {!! implode('', $errors->all('<div>:message</div>')) !!}
                                     @endif
@@ -50,23 +49,18 @@
                                     <div class="form-group">
                                         <label for="validationCustom05" class="col-form-label pt-0">
                                             لوجو الموقع</label>
-                                        <input class="form-control" id="validationCustom05" type="file" name="logo">
+                                        <input class="form-control dropify" id="validationCustom05" type="file" name="logo" data-default-file="{{asset($setting->logo)}}">
                                     </div>
                                     <div class="form-group">
                                         <label class="col-form-label">الصورة المصغرة</label>
-                                        <input class="form-control" id="validationCustom05" type="file" name="favicon">
+                                        <input class="form-control dropify" id="validationCustom05" type="file" name="favicon" data-default-file="{{asset($setting->favicon)}}">
                                     </div>
-
-
-
                                     <div class="form-group">
                                         <label for="validationCustom01" class="col-form-label pt-0"><span>*</span>
                                             اسم الموقع</label>
                                         <input class="form-control" id="validationCustom01" type="text" name="name"
                                             value="{{ $setting->name }}">
                                     </div>
-
-
                                     <div class="form-group">
                                         <label class="col-form-label">وصف الموقع</label>
                                         <textarea rows="5" cols="12" name="description">{{ $setting->twitter }}</textarea>
@@ -77,13 +71,11 @@
                                         <input class="form-control" id="validationCustom02" type="text" name="email"
                                             value="{{ $setting->email }}">
                                     </div>
-
                                     <div class="form-group">
                                         <label for="validationCustomtitle" class="col-form-label pt-0">رقم الهاتف</label>
                                         <input class="form-control" id="validationCustomtitle" type="text" name="phone"
                                             value="{{ $setting->phone }}">
                                     </div>
-
                                     <div class="form-group">
                                         <label for="validationCustomtitle" class="col-form-label pt-0">العنوان</label>
                                         <input class="form-control" id="validationCustomtitle" type="text" name="address"
