@@ -30,24 +30,11 @@ class CategoryController extends Controller
         return $this->categoryService->dataTable();
     }
 
-    public function create()
-    {
-        //
-    }
-
-
     public function store(CategoryStoreRequest $request)
     {
         $this->categoryService->store($request->validated());
         return redirect()->route('dashboard.categories.index')->with('success', 'تمت الاضافة بنجاح');
     }
-
-
-    public function show($id)
-    {
-        //
-    }
-
 
     public function edit($id)
     {
@@ -63,15 +50,9 @@ class CategoryController extends Controller
         return redirect()->route('dashboard.categories.edit',$id)->with('success', 'تمت الاضافة بنجاح');
     }
 
-
-    public function destroy($id)
-    {
-        //
-    }
-
     public function delete(CategoryDeleteRequest $request)
     {
-        Category::whereId($request->id)->delete();
+        $this->categoryService->delete($request->validated());
         return redirect()->route('dashboard.categories.index');
     }
 }

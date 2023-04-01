@@ -5,22 +5,26 @@ namespace App\Services;
 use App\Models\Category;
 use App\Utils\ImageUpload;
 use Yajra\DataTables\Facades\DataTables;
+use App\Repositorties\CategoryRepository;
 
 class CategoryService
 {
 
+    public $categoryRepository;
+
+    public function __construct(CategoryRepository $categoryRepo)
+    {
+        $this->categoryRepository = $categoryRepo;
+    }
+
     public function getMainCategorey()
     {
-        return  Category::where('parent_id', 0)->orwhere('parent_id', null)->get();
+        return $this->categoryRepository->getMainCategorey();
     }
 
     public function getById($id, $childrenCount = false)
     {
-        $query = Category::where('id', $id);
-        if ($childrenCount) {
-            $query->withCount('child');
-        }
-        return $query->firstorfail();
+        return $this->categoryRepository->getById($id, $childrenCount);
     }
 
     public function store($request)
@@ -29,20 +33,25 @@ class CategoryService
         if (isset($request['image'])) {
             $request['image'] = ImageUpload::UploadImage($request['image']);
         }
-        return Category::create($request);
+        return $this->categoryRepository->store($request);
     }
+
     public function update($id, $request)
     {
-        $category = $this->getById($id);
         $request['parent_id'] = $request['parent_id'] ?? 0;
         if (isset($request['image'])) {
             $request['image'] = ImageUpload::UploadImage($request['image']);
         }
-        return $category->update($request);
+        return $this->categoryRepository->update($id, $request);
+    }
+
+    public function delete($request)
+    {
+        return $this->categoryRepository->delete($request);
     }
     public function dataTable()
     {
-        $query = Category::select('*')->with('parent');
+        $query = $this->categoryRepository->baseQuery(['parent']);
         return  DataTables::of($query)
             ->addIndexColumn()
             ->addColumn('action', function ($row) {
