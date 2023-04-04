@@ -52,7 +52,7 @@
                  </a>
                  <ul class="sidebar-submenu">
                      <li>
-                         <a href="order.html">
+                        <a href="{{ route('dashboard.products.index') }}">
                              <i class="fa fa-circle"></i>المنتجات
                          </a>
                      </li>

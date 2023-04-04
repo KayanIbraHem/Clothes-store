@@ -17,6 +17,11 @@ class CategoryService
         $this->categoryRepository = $categoryRepo;
     }
 
+    public function getAllCategories()
+    {
+        return $this->categoryRepository->baseQuery(['child'])->get();
+    }
+
     public function getMainCategorey()
     {
         return $this->categoryRepository->getMainCategorey();
@@ -72,4 +77,5 @@ class CategoryService
             ->rawColumns(['parent', 'action', 'image'])
             ->make(true);
     }
+    
 }

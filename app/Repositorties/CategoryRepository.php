@@ -4,7 +4,7 @@ namespace App\Repositorties;
 
 use App\Models\Category;
 
-class CategoryRepository
+class CategoryRepository implements RepositoryInterface
 {
 
     public $category;
@@ -13,10 +13,12 @@ class CategoryRepository
     {
         $this->category = $category;
     }
+
     public function baseQuery($relations = [])
     {
         return $this->category->select('*')->with($relations);
     }
+
     public function getMainCategorey()
     {
         return $this->category->where('parent_id', 0)->get();
