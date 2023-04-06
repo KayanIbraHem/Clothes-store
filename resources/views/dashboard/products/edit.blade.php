@@ -35,6 +35,7 @@
                     <div class="card">
                         <div class="card-header">
                             <h5>اضافة منتج</h5>
+
                         </div>
                         <div class="card-body">
                             <div class="digital-add needs-validation">
@@ -103,6 +104,12 @@
                                             <select class="form-control colors" multiple="multiple" name="sizes[]"
                                                 value="{{ $product->size }}">
                                             </select>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="validationCustom05" class="col-form-label pt-0">
+                                                صور المنتج</label>
+                                            <input class="form-control dropify" id="validationCustom05" type="file"
+                                                name="images[]" multiple>
                                         </div>
                                     </div>
                                     <div class="form-group">

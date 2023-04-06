@@ -43,28 +43,22 @@ class ProductController extends Controller
         return redirect()->route('dashboard.products.index')->with('success', 'تم الاضافة بنجاح');
     }
 
-    public function show($id)
-    {
-        //
-    }
-
     public function edit($id)
     {
-        //
+        $categories = $this->categoryService->getAllCategories();
+        $product = $this->productService->getById($id);
+        return view('dashboard.products.edit', compact('categories', 'product'));
     }
 
-    public function update(Request $request, $id)
+    public function update($id, Request $request)
     {
-        //
+        $this->productService->update($id, $request->all());
+        return redirect()->route('dashboard.products.edit', $id)->with('success', 'تم التعديل بنجاح');
     }
 
     public function delete(ProductDeleteRequest $request)
     {
         $this->productService->delete($request->validated());
         return redirect()->route('dashboard.products.index');
-    }
-
-    public function destroy($id)
-    {
     }
 }

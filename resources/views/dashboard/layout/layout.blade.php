@@ -46,6 +46,7 @@
     <link rel="stylesheet" type="text/css" href="{{ asset('dashboard') }}/assets/css/dropify.css">
 
     <link rel="stylesheet" href="https://cdn.datatables.net/1.12.1/css/dataTables.bootstrap5.min.css">
+    <link rel="stylesheet" href="{{ asset('dashboard') }}/assets/css/select2.min.css">
 </head>
 
 <body class="rtl">
@@ -298,7 +299,7 @@
     <script src="{{ asset('dashboard') }}/assets/js/dropify.js"></script>
     <script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
     <script src="https://cdn.datatables.net/1.12.1/js/dataTables.bootstrap5.min.js"></script>
-
+    <script src="{{ asset('dashboard') }}/assets/js/select2.min.js"></script>
     <script>
         $('.dropify').dropify();
     </script>

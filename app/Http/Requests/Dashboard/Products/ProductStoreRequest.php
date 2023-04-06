@@ -29,6 +29,8 @@ class ProductStoreRequest extends FormRequest
             'price' => 'nullable|numeric',
             'category_id' => 'required|numeric|exists:categories,id',
             'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'images'=>'nullable|array',
+            'images.*'=>'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
             'discount_price' => 'nullable|numeric',
             'colors' => 'nullable|array',
             'colors.*' => 'nullable|string',

@@ -77,5 +77,4 @@ class CategoryService
             ->rawColumns(['parent', 'action', 'image'])
             ->make(true);
     }
-    
 }

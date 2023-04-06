@@ -22,19 +22,39 @@ class ProductService
 
     public function getById($id)
     {
-        return $this->productRepository->baseQuery([], [], ['id' => $id])->firstOrFail();
+        return $this->productRepository->getById($id);
     }
 
     public function store($request)
     {
         if (isset($request['image'])) {
-            $request['image'] = ImageUpload::UploadImage($request['image'],null,null,'product/');
+            $request['image'] = ImageUpload::UploadImage($request['image'], null, null, 'product/');
+        }
+        if (isset($request['colors'])) {
+            $request['color'] = implode(',', $request['colors']);
+            unset($request['colors']);
+        }
+        if (isset($request['sizes'])) {
+            $request['size'] = implode(',', $request['sizes']);
+            unset($request['sizes']);
         }
         return $this->productRepository->store($request);
     }
 
     public function update($id, $request)
     {
+        if (isset($request['image'])) {
+            $request['image'] = ImageUpload::UploadImage($request['image'], null, null, 'product/');
+        }
+        if (isset($request['colors'])) {
+            $request['color'] = implode(',', $request['colors']);
+            unset($request['colors']);
+        }
+        if (isset($request['sizes'])) {
+            $request['size'] = implode(',', $request['sizes']);
+            unset($request['sizes']);
+        }
+        return $this->productRepository->update($id, $request);
     }
 
     public function delete($request)
@@ -44,7 +64,7 @@ class ProductService
 
     public function dataTable()
     {
-        $query = $this->productRepository->baseQuery(relations: ['category'],withCount:['productColor']);
+        $query = $this->productRepository->baseQuery(relations: ['category']);
         return DataTables::of($query)
             ->addColumn('action', function ($row) {
                 return $btn = '

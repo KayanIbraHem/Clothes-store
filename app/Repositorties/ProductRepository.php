@@ -4,10 +4,11 @@ namespace App\Repositorties;
 
 use App\Models\Product;
 use App\Models\Category;
+use App\Utils\ImageUpload;
 use Yajra\DataTables\Facades\DataTables;
 use App\Repositorties\RepositoryInterface;
 
-class ProductRepository  implements  RepositoryInterface
+class ProductRepository  implements RepositoryInterface
 {
     public $product;
 
@@ -40,11 +41,28 @@ class ProductRepository  implements  RepositoryInterface
 
     public function update($id, $request)
     {
+        $product = $this->getById($id);
+        $images = $this->uploadMultipleImages($request, $product);
+        $product->images()->createmany($images);
+        return $product->update($request);
     }
 
     public function delete($request)
     {
-        $product=$this->getById($request['id']);
+        $product = $this->getById($request['id']);
         return $product->delete();
+    }
+    private function uploadMultipleImages($request, $product)
+    {
+        $images = [];
+        if (isset($request['images'])) {
+            $i = 0;
+            foreach ($request['images'] as $image) {
+                $images[$i]['image'] =  ImageUpload::UploadImage($image);
+                $images[$i]['product_id'] = $product->id;
+                $i++;
+            }
+        }
+        return $images;
     }
 }

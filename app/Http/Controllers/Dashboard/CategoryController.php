@@ -38,16 +38,16 @@ class CategoryController extends Controller
 
     public function edit($id)
     {
-        $category =$this->categoryService->getById($id,true);
+        $category = $this->categoryService->getById($id, true);
         $mainCategories = $this->categoryService->getMainCategorey();
-        return view('dashboard.categories.edit',compact('category','mainCategories'));
+        return view('dashboard.categories.edit', compact('category', 'mainCategories'));
     }
 
 
-    public function update($id,CategoryUpdateRequest $request)
+    public function update($id, CategoryUpdateRequest $request)
     {
-        $this->categoryService->update($id,$request->validated());
-        return redirect()->route('dashboard.categories.edit',$id)->with('success', 'تمت الاضافة بنجاح');
+        $this->categoryService->update($id, $request->validated());
+        return redirect()->route('dashboard.categories.edit', $id)->with('success', 'تمت الاضافة بنجاح');
     }
 
     public function delete(CategoryDeleteRequest $request)
